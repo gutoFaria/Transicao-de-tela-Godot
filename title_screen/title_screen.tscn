@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://dogxgncyybmo8"]
+
+[ext_resource type="Script" path="res://title_screen/title_screen.gd" id="1_qikj1"]
+[ext_resource type="Texture2D" uid="uid://67wc8qn5peoq" path="res://assets/background.png" id="1_wp54r"]
+[ext_resource type="Texture2D" uid="uid://csexd0yg6kae6" path="res://assets/logo.png" id="2_5rmhn"]
+[ext_resource type="Theme" uid="uid://w4jxwasayx0w" path="res://resources/CustomTheme.tres" id="3_l7uth"]
+[ext_resource type="FontFile" uid="uid://d0g8jllbg56cq" path="res://assets/Nathaniel_19.otf" id="4_fpef7"]
+[ext_resource type="Texture2D" uid="uid://crraa7h007j46" path="res://assets/button.png" id="5_kcgso"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0iid"]
+texture = ExtResource("5_kcgso")
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qikj1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wp54r")
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="Logo" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+texture = ExtResource("2_5rmhn")
+stretch_mode = 3
+
+[node name="MenuOptions" type="VBoxContainer" parent="MainMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="StartButton" type="Button" parent="MainMenu/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("3_l7uth")
+theme_override_fonts/font = ExtResource("4_fpef7")
+theme_override_font_sizes/font_size = 40
+text = "Start
+"
+
+[node name="OptionsButton" type="Button" parent="MainMenu/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("3_l7uth")
+theme_override_fonts/font = ExtResource("4_fpef7")
+theme_override_font_sizes/font_size = 40
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="MainMenu/MenuOptions"]
+layout_mode = 2
+theme = ExtResource("3_l7uth")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_fpef7")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0iid")
+text = "Exit"
+
+[connection signal="pressed" from="MainMenu/MenuOptions/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MainMenu/MenuOptions/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MainMenu/MenuOptions/ExitButton" to="." method="_on_exit_button_pressed"]
